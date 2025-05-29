@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Itchan's Eatery System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+    <div class="menu-section">
+      <h1>ITCHAN'S EATERY</h1>
+      <div class="menu-categories">
+        <button class="category-button active" data-category="all">All Items</button>
+        <button class="category-button" data-category="rice meals">Rice Meals</button>
+        <button class="category-button" data-category="drinks">Drinks</button>
+        </div>
+      <div id="menuItemsContainer" class="menu-grid">
+        </div>
+    </div>
+
+    <div class="order-section">
+      <div class="order-header">
+        <h2>Order Summary</h2>
+      </div>
+      <table id="salesTable">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Qty</th>
+            <th>Price</th>
+            <th>Total</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          </tbody>
+      </table>
+
+      <div class="summary-details">
+        <div class="summary-row">
+          <span>Subtotal:</span>
+          <span>₱<span id="subtotalDisplay">0.00</span></span>
+        </div>
+        <div class="summary-row">
+          <span>Tax (12%):</span>
+          <span>₱<span id="taxDisplay">0.00</span></span>
+        </div>
+        <div class="summary-row total-row">
+          <span>Total:</span>
+          <span>₱<span id="totalSales">0.00</span></span>
+        </div>
+      </div>
+
+      <div class="action-buttons">
+        <button class="action-btn primary" onclick="processPayment()">Process Payment</button>
+        <button class="action-btn" onclick="clearAllSales()">Clear Order</button>
+        <button class="action-btn" onclick="openMenuManagement()">Manage Menu</button>
+        <button class="action-btn" onclick="displaySales()">Sales</button>
+        </div>
+    </div>
+  </div>
+
+  <div id="menuManagementModal" class="modal">
+    <div class="modal-content">
+      <span class="close-button" onclick="closeMenuManagement()">&times;</span>
+      <h2>Manage Menu Items</h2>
+      <form id="menuItemForm">
+        <label for="newMenuItemName">Item Name:</label>
+        <input type="text" id="newMenuItemName" required>
+        <label for="newMenuItemPrice">Price:</label>
+        <input type="number" id="newMenuItemPrice" min="0.01" step="0.01" required>
+        <label for="newMenuItemCategory">Category:</label>
+        <input type="text" id="newMenuItemCategory" required>
+        <button type="submit">Add/Update Item</button>
+      </form>
+      <h3>Current Menu Items</h3>
+      <ul id="currentMenuItems">
+        </ul>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script src="record.js"></script>
+</body>
+</html>

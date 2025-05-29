@@ -1,0 +1,2 @@
+var salesOrder = [];
+var salesPrice = [];
