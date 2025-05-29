@@ -1,6 +1,6 @@
 let sales = [];
 let totalSales = [];
-let totalPrice;
+var totalPrice = 0;
 const TAX_RATE = 0.12; // 12% tax
 
 // --- Menu Data (simulating a database) ---
@@ -134,6 +134,7 @@ function processPayment() {
   
   // In a real system, you'd integrate with a payment processing API here
 
+  totalPrice += parseFloat(totalSalesDisplay.innerText);
 
   totalSales = sales.concat([]);
   clearAllSales(); // Clear order after "payment"
@@ -226,13 +227,7 @@ function displaySales(){
 
 for(let i=0;i < totalSales.length; i++){
 alert(totalSales[i].name);
-alert(totalSales[i].price);
 }
 
-for(let x=0;x<=totalSales.length;x++){
-  totalPrice += parseFloat(totalSales[x].price);
-}
-
-alert(totalPrice);
-
+alert("AMONGUS "+ totalPrice);
 }
