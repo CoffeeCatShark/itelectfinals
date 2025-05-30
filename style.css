@@ -354,3 +354,37 @@ body {
 #currentMenuItems li button:hover {
   background-color: #c82333;
 }
+
+#salesTable_ {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  background-color: #fff;
+  flex-grow: 1; /* Allows table to fill available space */
+  overflow-y: auto; /* Enable scrolling for the table body */
+  max-height: 400px; /* Adjust as needed */
+}
+
+#salesTable_ thead {
+  position: sticky; /* Keep header visible on scroll */
+  top: 0;
+  background-color: #f0f0f0;
+  z-index: 1;
+}
+
+#salesTable_ th, #salesTable td {
+  border: 1px solid #eee;
+  padding: 10px;
+  text-align: left;
+  font-size: 0.9em;
+}
+
+#salesTable_ th {
+  background-color: #f8f8f8;
+  color: #555;
+  font-weight: bold;
+}
+
+#salesTable_ tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}

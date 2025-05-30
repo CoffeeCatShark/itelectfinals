@@ -1,6 +1,7 @@
 let sales = [];
 let totalSales = [];
 var totalPrice = 0;
+var ctr = 0;
 const TAX_RATE = 0.12; // 12% tax
 
 // --- Menu Data (simulating a database) ---
@@ -18,8 +19,8 @@ let menuItems = [
 // --- UI Elements ---
 const menuItemsContainer = document.getElementById('menuItemsContainer');
 const salesTableBody = document.querySelector('#salesTable tbody');
+const salesTableBody_ = document.querySelector('#salesTable_ tbody');
 const subtotalDisplay = document.getElementById('subtotalDisplay');
-const taxDisplay = document.getElementById('taxDisplay');
 const totalSalesDisplay = document.getElementById('totalSales');
 const categoryButtons = document.querySelectorAll('.category-button');
 
@@ -111,11 +112,10 @@ function updateTable() {
     });
   }
 
-  const taxAmount = currentSubtotal * TAX_RATE;
-  const grandTotal = currentSubtotal + taxAmount;
+
+  const grandTotal = currentSubtotal;
 
   subtotalDisplay.innerText = currentSubtotal.toFixed(2);
-  taxDisplay.innerText = taxAmount.toFixed(2);
   totalSalesDisplay.innerText = grandTotal.toFixed(2);
 }
 
@@ -136,7 +136,8 @@ function processPayment() {
 
   totalPrice += parseFloat(totalSalesDisplay.innerText);
 
-  totalSales = sales.concat([]);
+  totalSales.push(...sales);
+ 
   clearAllSales(); // Clear order after "payment"
 }
 
@@ -223,11 +224,48 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-function displaySales(){
+function displaySales() {
 
-for(let i=0;i < totalSales.length; i++){
-alert(totalSales[i].name);
-}
 
-alert("AMONGUS "+ totalPrice);
+  if (totalSales.length === 0) {
+    alert("No sales recorded.");
+    return;
+  }
+
+  // Show the sales details section
+  document.getElementById('salesDetailsSection').style.display = 'block';
+
+  const salesDetailsBody = document.getElementById('salesDetailsBody');
+  salesDetailsBody.innerHTML = ''; // Clear previous entries
+
+  let grandTotal = 0;
+ 
+
+
+  totalSales.forEach((sale) => {
+    const row = document.createElement('tr');
+
+    const nameCell = document.createElement('td');
+    nameCell.textContent = sale.name;
+    row.appendChild(nameCell);
+
+    const qtyCell = document.createElement('td');
+    qtyCell.textContent = sale.qty;
+    row.appendChild(qtyCell);
+
+    const priceCell = document.createElement('td');
+    priceCell.textContent = `₱${sale.price.toFixed(2)}`;
+    row.appendChild(priceCell);
+
+    const totalCell = document.createElement('td');
+    totalCell.textContent = `₱${sale.total.toFixed(2)}`;
+    row.appendChild(totalCell);
+
+    salesDetailsBody.appendChild(row);
+
+    grandTotal += sale.total;
+  });
+
+  // Update the grand total
+  document.getElementById('grandTotalCell').textContent = `₱${grandTotal.toFixed(2)}`;
 }

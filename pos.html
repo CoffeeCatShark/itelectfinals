@@ -44,8 +44,6 @@
           <span>₱<span id="subtotalDisplay">0.00</span></span>
         </div>
         <div class="summary-row">
-          <span>Tax (12%):</span>
-          <span>₱<span id="taxDisplay">0.00</span></span>
         </div>
         <div class="summary-row total-row">
           <span>Total:</span>
@@ -57,7 +55,7 @@
         <button class="action-btn primary" onclick="processPayment()">Process Payment</button>
         <button class="action-btn" onclick="clearAllSales()">Clear Order</button>
         <button class="action-btn" onclick="openMenuManagement()">Manage Menu</button>
-        <button class="action-btn" onclick="displaySales()">Sales</button>
+        <button class="action-btn" onclick="displaySales()">Generate Report</button>
         </div>
     </div>
   </div>
@@ -84,4 +82,27 @@
   <script src="app.js"></script>
   <script src="record.js"></script>
 </body>
+<div id="salesDetailsSection" style="display: none;">
+  <table id="salesDetailsTable">
+    <thead>
+      <tr>
+        <th>Item Name</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody id="salesDetailsBody">
+      <!-- Sales rows will be appended here -->
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="3"><strong>Grand Total</strong></td>
+        <td id="grandTotalCell">₱0.00</td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+
+
 </html>
